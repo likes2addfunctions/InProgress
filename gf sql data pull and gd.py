@@ -1,4 +1,9 @@
 import mysql.connector
+import random
+import numpy
+import matplotlib.pyplot as plt
+import plotly.plotly as py
+	
 
 cnx = mysql.connector.connect(user='root', password='',
                               host='127.0.0.1',
@@ -103,10 +108,70 @@ def makeDataforGD(delta):
     print result
     return result
 
-makeDataforGD(1)       
-
-
+Data = makeDataforGD(1)       
 
 cnx.close()
+
+NumOfVars = len(Data[0]) - 1
+   
+
+### Linear Regression Hypothesis
+Theta_naught = [0]
+for i in range(NumOfVars):
+    Theta_naught = Theta_naught + [1]
+Theta_naught = numpy.array(Theta_naught)
+
+def hTheta(Theta, x):
+    return Theta[0] + numpy.dot(Theta[1:],x)
+
+### Cost Function
+def JTheta(Theta, Data):
+    cost = 0
+    for k in range(len(Data)):
+        x = []
+        for j in range(NumOfVars):
+            x = x + [Data[k][j+1]]
+        cost = cost + (hTheta(Theta,x) - Data[k][0])**2
+    cost = cost/(2*NumOfVars)    
+
+### Run Gradient Descent
+
+
+def GradDescent(Theta,Data,a, iterations):
+    Thetas = []
+    for i in range(iterations):
+        DJ0 = 0
+        for k in range(len(Data)):
+            x = []
+            for j in range(NumOfVars):
+                x = x + [Data[k][j+1]]
+            DJ0 = DJ0 + (hTheta(Theta,x) - Data[k][0])
+        DJ0 = DJ0/(NumOfVars)
+        DJ = [DJ0]
+        
+        for m in range(NumOfVars):
+            DJm = 0
+            for k in range(len(Data)):
+                x = []
+                for j in range(NumOfVars):
+                    x = x + [Data[k][j+1]]
+                DJm = DJm + (hTheta(Theta,x) - Data[k][0])*x[m]
+            DJm = DJm/(NumOfVars)
+            DJ = DJ + [DJm]
+        DJ = numpy.array(DJ)  
+        
+        Theta = Theta - a*DJ
+        Thetas = Thetas + [Theta[1]]
+    print(len(Thetas))
+    plt.plot(range(iterations), Thetas)
+    #plt.plot(range(iterations), t1s)
+    printstr = "y = " + str(Theta[0])
+    for k in range(NumOfVars):
+        printstr = printstr + " + " + str(Theta[k+1]) + "x_" + str(k+1)
+    print printstr
+    plt.show()
+
+GradDescent(Theta_naught,Data,.001,1000)
+
 
 
