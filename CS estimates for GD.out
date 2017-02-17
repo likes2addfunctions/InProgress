@@ -1,0 +1,8 @@
+\BOOKMARK [1][-]{section.1}{The Method of Gradient Descent}{}% 1
+\BOOKMARK [1][-]{section.2}{Cauchy Sequences}{}% 2
+\BOOKMARK [1][-]{section.3}{Initial Data, visual estimates of convergence time for different numbers of variables.}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{How pseudo random data for these tests is generated.}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Data on the rate of convergence at randomness level blank for different numbers of variables}{section.3}% 5
+\BOOKMARK [1][-]{section.4}{The Cost of Implementing the Condition}{}% 6
+\BOOKMARK [1][-]{section.5}{Empirical Data}{}% 7
+\BOOKMARK [1][-]{section.6}{Proposals for Future Research}{}% 8

@@ -1,0 +1,208 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{A Method for Detecting Convergence of Gradient Descent with Cauchy-Style Estimates}
+\author{Galen Novello}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In this paper I propose a method for detecting the convergence of the method of gradient descent with "Cauchy 
+style" estimates.  Brief overviews of the method of gradient descent and Cauchy sequences are provided, followed by a discussion
+of how the data for this paper was generated and some initial data.  The main result of the paper is the conjecture that the method of gradient descent has converged on iteration $k$ if 
+$\forall\ k - 4n \leq  j,m \leq k$ the inequality $|\theta_{i_{j}} - \theta_{i_{m}}| < 5\alpha$ holds. Empirical evidence supporting this conjecture is presented and ideas to formalize and extend this research are given.
+\end{abstract}
+
+\section{The Method of Gradient Descent}
+The method of gradient descent is a regression algorithm that works to minimize a cost function by using 
+the gradient to iteratively adjust the model. A good introduction to the method as well as an outline of it's justification 
+can be found in \href{http://openclassroom.stanford.edu/MainFolder/CoursePage.php?course=MachineLearning}{open source resources from Andrew Ng's Machine Learning Course}, 
+and it was these materials which guided me to creating the gradient descent algoritm used in this paper. 
+
+To produce a model for quantity of interest $y$  as a function of variables 
+$x_{1}, ... , x_{n}$ the method seeks coefficents $\theta_{0}, \theta_{1}, ... , \theta_{n}$ of the line 
+$$y = \theta_{0} + \theta_{1} x_{1} + ... + \theta_{n} x_{n}.$$  
+The error of a model $\Theta = (\theta_{0}, \theta_{1}, \dots , \theta_{n})$ 
+is given by the cost function 
+$$J = \frac{1}{2n} \sum (y - X \cdot \Theta)^{2}$$ where the sum is taken over all points 
+$(y, x_{1}, x_{2}, \dots , x_{n})$  in training data set and for each point we set $X = (1, x_{1}, x_{2}, ... x_{n})$
+for notational convenience. 
+
+
+On each iterateration the method takes a hypothesis $\Theta = (\theta_{0}, \theta_{1}, \dots , \theta_{n})$ 
+and computes the gradient of the cost function of using this hypothesis, $DJ$.
+A new hypothesis is then produced by taking $\Theta_{\mbox{new}} = \Theta - \alpha DJ$ where $\alpha \in \mathbb{R}$, known as
+the step size, is a suitable constant. In this way a sequence $\theta_{i_{k}}$ is produced for each coefficient $\theta_{i}$ and it is clear that
+convergence of the model is equivalent to convergence of each of these sequences pointwise. 
+
+
+\section{Cauchy Sequences}
+Cauchy Sequences are a well known tool for analyzing convergence of sequences.  Most people first encounter them in the context of real numbers
+in an introductory course on real analysis or topology but the equivalence of being a Cauchy Sequence and being a convergent sequence is so important 
+that it gets its own name and we call a topological space with such an equivalence complete.  You can find rather exotic examples of complete spaces in
+the literature, but for the purposes of this conversation it will suffice to point out that closed metric spaces, and in particular $\mathbb{R}^{n}$, are complete. 
+
+A sequence $\theta_{i}$ is said to be a Cauchy sequence if for any $\epsilon > 0$ there is some $N$ for which $|\theta_{i} - \theta_{j}| < \epsilon$ for all $i, j > N$. 
+The idea of this paper is to adjust this definition in two ways to create a method to detect the convergence of the coefficients of gradient descent 
+
+\begin{itemize} 
+\item By changing the condition ``for all $i,j > N$"  to
+``for all $i$ such that $k - k_{0} < i < k$ " where $k$ is the index of the most recent iteration and $k_{0}$ is a ``window size" that depends on the number of variables in the model.  
+\item By finding a bound on $\epsilon$ that will ensure (at least a high probability of) convergence of the model.  
+
+\end{itemize}
+
+\section{Initial Data, visual estimates of convergence time for different numbers of variables.}
+\subsection{How pseudo random data for these tests is generated.}
+Convergence time of the method of gradient descent is affected by the spread of the data and the step size $\alpha$.  In fact, the method can diverge if 
+$\alpha$ is chosen to be too large relative to the spread of the data. 
+Data is generated for these test by first generating a vector, $M$, of constants uniformly from  $[-1,1]$ - this is the 
+target function, the "answer" that the method will try and reconstruct.  
+
+Each data point $(y, x_{1}, x_{2}, ... , x_{n})$ is then generated by picking each $x_{k}$ uniformly from $[-1,1]$ and computing 
+$y$ through the formula $y = M \cdot X$ where $X = (x_{1}, ... , x_{n})$.  
+
+Convergence of the algorithm is affected if the interval $[-1,1]$ is changed in either case.  It is the suspicion of the author that the ratio of the lengths of these intervals is
+relevant to choosing the step size $\alpha$, and perhaps it is worth noting that in this case that ratio is 1. 
+
+A set of 500 data points is generated in this way, 50 of them are removed for a final test set and the remaining 450 form the training set for the data. $\alpha$ is choosen as $.01$. 
+
+\subsection{Data on the rate of convergence at randomness level blank for different numbers of variables} 
+The convegence of the algorithm can be visualized by plotting the values of the $\theta_{i}$ vs the number of iterations. For example, the convergence of $\theta_{1}$
+for a 9 variable gradient descent algorithm is given 
+
+\begin{center}
+\includegraphics{925.png}
+\end{center}
+
+ With this particular model converegence can further be determined by the target function to the model which in this case gave 7 digits of accuracy after 100 iterations 
+($\theta_{real} = 0.48810335753783995$, $\theta_{ predicted} = 0.48810336800164367$).  From the graph it is also clear that almost as good an approximation would have been obtained
+with half as many (or fewer) iterations. 
+ 
+Running 30 tests for each number of variables from 2 to 11 and analyzing the convergence of $\theta_{1}$ (the algorithm is symmetric in $\theta_{i}$ so there is no harm in this) leads to the following estimates for the number of iterations by which we expect convegence to begin. 
+
+\begin{tabular} {cc}
+\# of vars & estimate \\
+2 & does not converge with this alpha\\
+3 &  10 \\
+4 &  12 \\
+5 &  15 \\
+6 &  20 \\
+7 &  25 \\
+8 & 30 \\
+9 & 35 \\
+10 & 40\\
+11 & 40
+
+\end{tabular} 
+
+These are, of course rough estimates, based on a small sample, but they appear to indicate a pretty linear growth and lead to the initial hypothesis to look for convergence after $4n$ iterations where $n$ is the number of variables. 
+
+Another look at the graph shows that the distance between the local min on the curve and the value to which it converges is less than .1.  This was true for all 270 models that converged,
+so we expect that if all points start to tend to be within .1 of eachother the curve is on its way to convergence.  In this case $\alpha$ is $.01$ so our bound of $.1$ can be though of as 
+$10\alpha$.  We give a silight0ly more conservative initial estimate: that we can choose $\epsilon$ to be 5 $\alpha$. 
+
+Putting it together we conjecture that the method of gradient descent has converged on iteration $k$ if 
+$$\forall\ k - 4n \leq  j,m \leq k, \hspace{.2in} 
+|\theta_{i_{j}} - \theta_{i_{m}}| < 5\alpha$$  
+
+\section{The Cost of Implementing the Condition}
+To implement this condition it will at worst be necessary to keep a matrix of the n+1 values of each coefficient over 4n iterations and checking them which means the cost of 
+implementing the proceduce is on the order $n^2$ checks per iteration in particular this is constant with respect to the size of the training set. Each iteration of the gradient descent method requires computations at least on the order of $n$ times the number of data points in the training set, so unless the number of variables is greater than the number of data points (which probably wouldn't converge anyway), implementing the test required above will lower the computational cost of running the algorithm (significantly). 
+
+\section{Empirical Data}
+To gauge the effectiveness of this method to detect convergence, 30 more simulations for each number of variables from 3 to 11 were performed, and the result of the Gradient Descent after 100 iterations and after the Cauchy cutoff were compared. On average the theta from the Cauchy estimate agreed with the real value of the coefficient to within .0001 for low numbers of variables and .001 for larger.  The following table gives an idea of the averge number of computations for caucy convergence and to what accuracy: 
+
+\begin{tabular} {ccc}
+\# of vars & average iterations to converge & Cauchy accuracy\\
+3 &  15 & .0001 \\
+4 &  21  & .001 \\
+5 &  27 & .001 \\
+6 &  33 & .001 \\
+7 &  38 & .001 \\
+8 & 45 & .001 \\
+9 & 49 & .001\\
+10 & 55 & .001\\
+11 & 65 & .001
+
+\end{tabular} 
+
+The accuracy of the coefficients from 100 iterations continued to be within .00001 at 11 variables.  So there was a loss of a couple places of accuracy, but about a 33\% savings in computation.  Probably not a bad trade off in most situations.  
+
+The entirety of the data referred to above as well as the source code used to generate it and a copy of this paper can be found on \href{ https://github.com/likes2addfunctions/CodeSamples/tree/master/GDCauchyMethod }{ GitHub} .
+
+\section{Proposals for Future Research}
+\begin{itemize}
+\item Refine Estimate of computation savings 
+
+\item Provide analytic justification/refinement of estimates for $k_{0}$ and $\epsilon$. 
+
+\item Make precise connection between size of alpha, intensity of randomness, and convergence
+
+\end{itemize}
+
+
+
+
+
+
+
+\end{document}

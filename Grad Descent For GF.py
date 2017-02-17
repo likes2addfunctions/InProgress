@@ -9,27 +9,35 @@ import matplotlib.pyplot as plt
 import plotly.plotly as py
 	
 ### Generates data set of [Y, X1, X2, ... Xn], for example [Price, House Size, number of bedrooms, ...]#SampleSize = 50
-NumOfVars = 8
+NumOfVars = 5
 
 Data = []
 
 coefs = []
 for i in range(NumOfVars):
-    m = 2*random.random() - 1
+    m =  2 * random.random() - 1
     coefs = coefs + [m]
         
-for i in range(100):
+for i in range(500):
     point = []
     y = 0
     for k in range(NumOfVars):
-        x = random.random()
+        x = 2*random.random() - 1
         y = y + coefs[k]*x    
         point = point + [x]
     point = [y] + point
     Data = Data + [point]
     
 #print XVect
-#print YVect    
+#print YVect
+
+### Create Test Set
+test_set = []
+indicies = []
+for i in range(len(Data)/10):
+    indi = random.randrange(len(Data))
+    test_set = test_set + [Data[indi]]
+    Data = Data[:indi] + Data[(indi +1):]
 
 ### Linear Regression Hypothesis
 Theta_naught = [0]
@@ -37,6 +45,7 @@ for i in range(NumOfVars):
     Theta_naught = Theta_naught + [1]
 Theta_naught = numpy.array(Theta_naught)
 
+###Predicted value
 def hTheta(Theta, x):
     return Theta[0] + numpy.dot(Theta[1:],x)
 
@@ -79,6 +88,7 @@ def GradDescent(Theta,Data,a, iterations):
         Theta = Theta - a*DJ
         Thetas = Thetas + [Theta[1]]
     print(len(Thetas))
+    fig = plt.figure()
     plt.plot(range(iterations), Thetas)
     #plt.plot(range(iterations), t1s)
     print coefs
@@ -87,9 +97,32 @@ def GradDescent(Theta,Data,a, iterations):
         printstr = printstr + " + " + str(Theta[k+1]) + "x_" + str(k+1)
     print printstr
     plt.show()
+    fig.savefig('test.png')
+    model = []
+    for k in range(NumOfVars+1):
+        model = model + [Theta[k]]
+    return model
 
 
-GradDescent(Theta_naught,Data,.01,1000)
+def testSetError(test_set, model):
+    sqErrors = []
+    for entry in test_set:
+        y = 0
+        for k in range(len(entry)-1):
+            y = y + (entry[k+1])*(model[k])
+        error = (entry[0] - y)/(entry[0])
+        print entry[0], y, error
+        sqErrors = sqErrors + [error**2]
+    #print "sqe", sqErrors
+    SSE = 0
+    for x in sqErrors:
+        SSE = SSE + x
+    print "SSE", SSE
+    SD = numpy.sqrt(SSE/(len(model) - 1))
+    print "SD", SD
+    return SD
+            
+testSetError(test_set, GradDescent(Theta_naught,Data,.01,100))
 #
 #plt.scatter(XVect,YVect)
 #plt.show()

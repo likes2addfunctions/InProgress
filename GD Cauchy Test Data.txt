@@ -1,0 +1,449 @@
+3 Vars Test0
+ThetaCauchy: 0.468941822496 in 14
+ThetaFinal: 0.468938589377
+ThetaTrue: 0.468938589377
+
+3 Vars Test1
+ThetaCauchy: -0.44160948795 in 15
+ThetaFinal: -0.441626811739
+ThetaTrue: -0.441626811739
+
+3 Vars Test2
+ThetaCauchy: -0.892276596907 in 16
+ThetaFinal: -0.892288780802
+ThetaTrue: -0.892288780802
+
+3 Vars Test3
+ThetaCauchy: 0.986477241389 in 13
+ThetaFinal: 0.986489877103
+ThetaTrue: 0.986489877103
+
+3 Vars Test4
+ThetaCauchy: 0.809144392052 in 13
+ThetaFinal: 0.809170097553
+ThetaTrue: 0.809170097553
+
+3 Vars Test5
+ThetaCauchy: -0.761559548919 in 16
+ThetaFinal: -0.761561598493
+ThetaTrue: -0.761561598493
+
+3 Vars Test6
+ThetaCauchy: -0.21940411426 in 16
+ThetaFinal: -0.219415579136
+ThetaTrue: -0.219415579136
+
+3 Vars Test7
+ThetaCauchy: -0.804478813101 in 16
+ThetaFinal: -0.804485489417
+ThetaTrue: -0.804485489417
+
+3 Vars Test8
+ThetaCauchy: -0.567108804935 in 16
+ThetaFinal: -0.567131258993
+ThetaTrue: -0.567131258993
+
+3 Vars Test9
+ThetaCauchy: 0.334272445367 in 14
+ThetaFinal: 0.334263480829
+ThetaTrue: 0.334263480829
+
+4 Vars Test0
+ThetaCauchy: -0.990272971212 in 22
+ThetaFinal: -0.990312650704
+ThetaTrue: -0.990312650704
+
+4 Vars Test1
+ThetaCauchy: 0.964358399198 in 20
+ThetaFinal: 0.964421385832
+ThetaTrue: 0.964421385832
+
+4 Vars Test2
+ThetaCauchy: -0.951820645494 in 22
+ThetaFinal: -0.951836033897
+ThetaTrue: -0.951836033897
+
+4 Vars Test3
+ThetaCauchy: -0.694155355323 in 22
+ThetaFinal: -0.69417119808
+ThetaTrue: -0.69417119808
+
+4 Vars Test4
+ThetaCauchy: 0.676468083233 in 19
+ThetaFinal: 0.676472630579
+ThetaTrue: 0.676472630579
+
+4 Vars Test5
+ThetaCauchy: -0.860543314306 in 23
+ThetaFinal: -0.860564303628
+ThetaTrue: -0.860564303628
+
+4 Vars Test6
+ThetaCauchy: 0.377438863799 in 21
+ThetaFinal: 0.377414366318
+ThetaTrue: 0.377414366318
+
+4 Vars Test7
+ThetaCauchy: -0.933632891472 in 22
+ThetaFinal: -0.933637194555
+ThetaTrue: -0.933637194555
+
+4 Vars Test8
+ThetaCauchy: 0.350089464855 in 19
+ThetaFinal: 0.350174215116
+ThetaTrue: 0.350174215116
+
+4 Vars Test9
+ThetaCauchy: 0.0925353351979 in 19
+ThetaFinal: 0.09264249088
+ThetaTrue: 0.09264249088
+
+5 Vars Test0
+ThetaCauchy: -0.614326355244 in 29
+ThetaFinal: -0.614384926937
+ThetaTrue: -0.614384926937
+
+5 Vars Test1
+ThetaCauchy: -0.72527809235 in 28
+ThetaFinal: -0.725298309065
+ThetaTrue: -0.725298309065
+
+5 Vars Test2
+ThetaCauchy: 0.895546838295 in 21
+ThetaFinal: 0.895434152402
+ThetaTrue: 0.895434152402
+
+5 Vars Test3
+ThetaCauchy: 0.643870819729 in 25
+ThetaFinal: 0.643812608754
+ThetaTrue: 0.643812608754
+
+5 Vars Test4
+ThetaCauchy: 0.467916006211 in 27
+ThetaFinal: 0.467865894865
+ThetaTrue: 0.467865894865
+
+5 Vars Test5
+ThetaCauchy: 0.039417192846 in 27
+ThetaFinal: 0.0393742077325
+ThetaTrue: 0.0393742077325
+
+5 Vars Test6
+ThetaCauchy: 0.453867455514 in 27
+ThetaFinal: 0.453796834725
+ThetaTrue: 0.453796834725
+
+5 Vars Test7
+ThetaCauchy: -0.271210375577 in 28
+ThetaFinal: -0.27127389312
+ThetaTrue: -0.27127389312
+
+5 Vars Test8
+ThetaCauchy: -0.154711916879 in 27
+ThetaFinal: -0.154745345487
+ThetaTrue: -0.154745345487
+
+5 Vars Test9
+ThetaCauchy: -0.485951120001 in 29
+ThetaFinal: -0.485984921679
+ThetaTrue: -0.485984921679
+
+6 Vars Test0
+ThetaCauchy: 0.0489180111918 in 32
+ThetaFinal: 0.0487842783499
+ThetaTrue: 0.0487842783442
+
+6 Vars Test1
+ThetaCauchy: -0.475763763784 in 32
+ThetaFinal: -0.475729956396
+ThetaTrue: -0.475729956396
+
+6 Vars Test2
+ThetaCauchy: -0.596677313678 in 35
+ThetaFinal: -0.596719271672
+ThetaTrue: -0.596719271673
+
+6 Vars Test3
+ThetaCauchy: -0.603433916424 in 34
+ThetaFinal: -0.603462427223
+ThetaTrue: -0.603462427223
+
+6 Vars Test4
+ThetaCauchy: -0.914959645913 in 36
+ThetaFinal: -0.915051298899
+ThetaTrue: -0.915051298907
+
+6 Vars Test5
+ThetaCauchy: -0.421637667623 in 34
+ThetaFinal: -0.421671467212
+ThetaTrue: -0.421671467211
+
+6 Vars Test6
+ThetaCauchy: -0.575469119899 in 35
+ThetaFinal: -0.575512755652
+ThetaTrue: -0.575512755652
+
+6 Vars Test7
+ThetaCauchy: -0.343698788185 in 34
+ThetaFinal: -0.343748720103
+ThetaTrue: -0.343748720103
+
+6 Vars Test8
+ThetaCauchy: 0.49711378252 in 31
+ThetaFinal: 0.497073399887
+ThetaTrue: 0.497073399887
+
+6 Vars Test9
+ThetaCauchy: 0.280725967455 in 31
+ThetaFinal: 0.280587631098
+ThetaTrue: 0.280587631093
+
+7 Vars Test0
+ThetaCauchy: 0.591364679592 in 35
+ThetaFinal: 0.591353888057
+ThetaTrue: 0.591353888066
+
+7 Vars Test1
+ThetaCauchy: 0.724311813274 in 35
+ThetaFinal: 0.724187968455
+ThetaTrue: 0.724187968408
+
+7 Vars Test2
+ThetaCauchy: -0.57561012574 in 42
+ThetaFinal: -0.575668651272
+ThetaTrue: -0.575668651388
+
+7 Vars Test3
+ThetaCauchy: 0.243875341774 in 35
+ThetaFinal: 0.243962616524
+ThetaTrue: 0.24396261659
+
+7 Vars Test4
+ThetaCauchy: 0.396834759422 in 38
+ThetaFinal: 0.396763123752
+ThetaTrue: 0.396763123713
+
+7 Vars Test5
+ThetaCauchy: 0.601672258079 in 36
+ThetaFinal: 0.601601356653
+ThetaTrue: 0.601601356567
+
+7 Vars Test6
+ThetaCauchy: -0.0192164378652 in 36
+ThetaFinal: -0.0192141046655
+ThetaTrue: -0.0192141046703
+
+7 Vars Test7
+ThetaCauchy: 0.59703280748 in 35
+ThetaFinal: 0.596972532383
+ThetaTrue: 0.596972532368
+
+7 Vars Test8
+ThetaCauchy: -0.870596915525 in 42
+ThetaFinal: -0.870650899636
+ThetaTrue: -0.870650899665
+
+7 Vars Test9
+ThetaCauchy: 0.747111613625 in 34
+ThetaFinal: 0.747104284996
+ThetaTrue: 0.747104285043
+
+8 Vars Test0
+ThetaCauchy: -0.511532888646 in 47
+ThetaFinal: -0.511654768579
+ThetaTrue: -0.511654778246
+
+8 Vars Test1
+ThetaCauchy: 0.481420762239 in 42
+ThetaFinal: 0.48132395691
+ThetaTrue: 0.4813239557
+
+8 Vars Test2
+ThetaCauchy: 0.0757001457204 in 45
+ThetaFinal: 0.0756567552164
+ThetaTrue: 0.0756567549924
+
+8 Vars Test3
+ThetaCauchy: 0.934412017478 in 39
+ThetaFinal: 0.93477427886
+ThetaTrue: 0.93477428253
+
+8 Vars Test4
+ThetaCauchy: 0.912990080502 in 33
+ThetaFinal: 0.9135929799
+ThetaTrue: 0.913592982562
+
+8 Vars Test5
+ThetaCauchy: -0.705549408068 in 47
+ThetaFinal: -0.705585177893
+ThetaTrue: -0.705585177138
+
+8 Vars Test6
+ThetaCauchy: -0.61668439493 in 50
+ThetaFinal: -0.616819033596
+ThetaTrue: -0.616819048116
+
+8 Vars Test7
+ThetaCauchy: -0.811185786008 in 48
+ThetaFinal: -0.811235884564
+ThetaTrue: -0.81123588542
+
+8 Vars Test8
+ThetaCauchy: 0.9877119271 in 36
+ThetaFinal: 0.987616437583
+ThetaTrue: 0.987616437949
+
+8 Vars Test9
+ThetaCauchy: -0.163229838589 in 47
+ThetaFinal: -0.163412264121
+ThetaTrue: -0.163412283601
+
+9 Vars Test0
+ThetaCauchy: 0.175284296354 in 48
+ThetaFinal: 0.175229861345
+ThetaTrue: 0.175229855826
+
+9 Vars Test1
+ThetaCauchy: 0.650234584451 in 52
+ThetaFinal: 0.650091643181
+ThetaTrue: 0.650091594947
+
+9 Vars Test2
+ThetaCauchy: 0.943850824306 in 43
+ThetaFinal: 0.943661353255
+ThetaTrue: 0.943661330374
+
+9 Vars Test3
+ThetaCauchy: 0.593901330956 in 48
+ThetaFinal: 0.593859980904
+ThetaTrue: 0.593859987951
+
+9 Vars Test4
+ThetaCauchy: 0.00920973164854 in 51
+ThetaFinal: 0.00910874660181
+ThetaTrue: 0.00910872528365
+
+9 Vars Test5
+ThetaCauchy: -0.174153645383 in 49
+ThetaFinal: -0.174154957701
+ThetaTrue: -0.174154956998
+
+9 Vars Test6
+ThetaCauchy: -0.915511796482 in 53
+ThetaFinal: -0.915568622885
+ThetaTrue: -0.915568632312
+
+9 Vars Test7
+ThetaCauchy: 0.0347291238964 in 52
+ThetaFinal: 0.0346262802471
+ThetaTrue: 0.0346262472398
+
+9 Vars Test8
+ThetaCauchy: 0.443871630085 in 50
+ThetaFinal: 0.443704085507
+ThetaTrue: 0.443704044728
+
+9 Vars Test9
+ThetaCauchy: 0.700743640052 in 43
+ThetaFinal: 0.700757210832
+ThetaTrue: 0.700757210742
+
+10 Vars Test0
+ThetaCauchy: 0.133873238801 in 53
+ThetaFinal: 0.133945317399
+ThetaTrue: 0.133945509219
+
+10 Vars Test1
+ThetaCauchy: -0.778104070445 in 55
+ThetaFinal: -0.778047738285
+ThetaTrue: -0.778047680675
+
+10 Vars Test2
+ThetaCauchy: -0.650095494801 in 59
+ThetaFinal: -0.650168467373
+ThetaTrue: -0.650168593
+
+10 Vars Test3
+ThetaCauchy: -0.469822542746 in 56
+ThetaFinal: -0.469840080138
+ThetaTrue: -0.469840086187
+
+10 Vars Test4
+ThetaCauchy: -0.436945388614 in 63
+ThetaFinal: -0.437202281957
+ThetaTrue: -0.437204361387
+
+10 Vars Test5
+ThetaCauchy: -0.970447051857 in 64
+ThetaFinal: -0.970602836952
+ThetaTrue: -0.970603790951
+
+10 Vars Test6
+ThetaCauchy: 0.768665746315 in 45
+ThetaFinal: 0.768857097312
+ThetaTrue: 0.76885712629
+
+10 Vars Test7
+ThetaCauchy: -0.283779764788 in 59
+ThetaFinal: -0.283840253222
+ThetaTrue: -0.28384024491
+
+10 Vars Test8
+ThetaCauchy: 0.612988531449 in 53
+ThetaFinal: 0.612883979781
+ThetaTrue: 0.612883885277
+
+10 Vars Test9
+ThetaCauchy: -0.386116210426 in 55
+ThetaFinal: -0.386116806251
+ThetaTrue: -0.386116745026
+
+11 Vars Test0
+ThetaCauchy: -0.358673808672 in 59
+ThetaFinal: -0.358566451741
+ThetaTrue: -0.358565982355
+
+11 Vars Test1
+ThetaCauchy: -0.545632355272 in 65
+ThetaFinal: -0.545707714755
+ThetaTrue: -0.545708391011
+
+11 Vars Test2
+ThetaCauchy: -0.00253517297078 in 64
+ThetaFinal: -0.00267859057973
+ThetaTrue: -0.00268010114317
+
+11 Vars Test3
+ThetaCauchy: -0.643218158857 in 67
+ThetaFinal: -0.643343153886
+ThetaTrue: -0.643344790651
+
+11 Vars Test4
+ThetaCauchy: -0.350546777864 in 66
+ThetaFinal: -0.350709402536
+ThetaTrue: -0.35071142894
+
+11 Vars Test5
+ThetaCauchy: 0.23709257223 in 58
+ThetaFinal: 0.237049851844
+ThetaTrue: 0.237049742873
+
+11 Vars Test6
+ThetaCauchy: 0.847619556483 in 48
+ThetaFinal: 0.848481993902
+ThetaTrue: 0.848483359219
+
+11 Vars Test7
+ThetaCauchy: -0.460176977408 in 62
+ThetaFinal: -0.460253101529
+ThetaTrue: -0.460253660415
+
+11 Vars Test8
+ThetaCauchy: -0.580660564276 in 67
+ThetaFinal: -0.580757478101
+ThetaTrue: -0.580758541853
+
+11 Vars Test9
+ThetaCauchy: -0.758723865797 in 71
+ThetaFinal: -0.758947833414
+ThetaTrue: -0.758954172043
