@@ -7,8 +7,58 @@ import random
 import numpy
 import matplotlib.pyplot as plt
 import plotly.plotly as py
+import mysql.connector
+
 	
 ### Generates data set of [Y, X1, X2, ... Xn], for example [Price, House Size, number of bedrooms, ...]#SampleSize = 50
+cnx = mysql.connector.connect(user='g', password='g',
+                              host='10.0.0.7',
+                              database='gf_data')
+        
+querystr = "select * from masterdata where \
+            time_gathered >= '2017-02-21 12:00:00' \
+            and time_gathered <= '2017-02-22 08:32:56' \
+            and symbol = 'AMD'; "
+query = (querystr)
+cursor = cnx.cursor()
+cursor.execute(query)
+
+data = []
+mean = 0
+for entry in cursor:
+    newentry = list(entry[:3])
+    #indicies = range(len(entry)-3)
+    indicies = range(5)
+    for k in indicies:
+        item = entry[k+3]
+        newitem =''
+        for letter in item:
+            newitem = newitem + str(letter)
+        try:
+            newentry = newentry + [float(newitem)]
+        except:
+            newentry = newentry + [newitem]
+    data = data + [newentry]
+        #mean = mean + newentry[3]
+
+for entry in data[0:5]:
+    entrytime = entry[2]
+    querytime = str(entrytime.hour)
+    querystr  = "select * from masterdata where \
+                    symbol = 'AMD' \
+                    and time_gathered >= " + str(entrytime) + \
+                    " and time_gathered <= "
+    print querystr
+
+  
+print data[0:10]
+print data[-1]
+##print len(data)
+##print mean
+
+cnx.close()
+
+
 NumOfVars = 5
 
 Data = []
@@ -122,7 +172,7 @@ def testSetError(test_set, model):
     print "SD", SD
     return SD
             
-testSetError(test_set, GradDescent(Theta_naught,Data,.01,100))
+#testSetError(test_set, GradDescent(Theta_naught,Data,.01,100))
 #
 #plt.scatter(XVect,YVect)
 #plt.show()
