@@ -11,21 +11,24 @@ import mysql.connector
 import datetime
 import math
 
-
-symbol = "'AMD'"
-
 cnx = mysql.connector.connect(user='g', password='g',
                               host='10.0.0.7',
                               database='gf_data')
-        
-querystr = "select * from masterdata where \
-            time_gathered >= '2017-02-19 12:00:00' \
-            and time_gathered <= '2017-02-22 08:32:56' \
-            and symbol = " + symbol + " ; "
-print querystr
-query = (querystr)
-cursor = cnx.cursor()
-cursor.execute(query)
+
+
+
+def getData(symbol):
+
+            
+    querystr = "select * from masterdata where " + \
+                "time_gathered >= '2017-02-07 06:00:00' " + \
+                "and time_gathered <= '2017-02-21 14:32:56' " + \
+                "and symbol = " + symbol + " ; "
+    print querystr
+    query = querystr
+    cursor = cnx.cursor()
+    cursor.execute(query)
+    return cursor
 
 
 def cleanCursor(cursor):
@@ -34,7 +37,7 @@ def cleanCursor(cursor):
     for entry in cursor:
         newentry = list(entry[:3])
         #indicies = range(len(entry)-3)
-        indicies = range(3)
+        indicies = range(NumOfVars)
         for k in indicies:
             item = entry[k+3]
             newitem =''
@@ -47,69 +50,49 @@ def cleanCursor(cursor):
         data = data + [newentry]
     return data
 
-data = cleanCursor(cursor)
 
-### Formatted Data will be of the form (%change in 24 hours, stats)
-
-formattedData = []
-
-for k in range(len(data)):
-    entry = data[k]
-    entrytime = entry[2]
-    querytimestart = entrytime + datetime.timedelta(days=1, seconds = -30)
-    querytimeend = entrytime + datetime.timedelta(days=1, seconds = 30)
-    querystr  = "select * from masterdata where symbol = 'AMD' \
-                    and time_gathered >= '" + str(querytimestart) + \
-                    "' and time_gathered <= '" + str(querytimeend) + "' ;"
-    #print querystr
-    query = (querystr)
-    cursor = cnx.cursor()
-    cursor.execute(query)
-    nextday = cleanCursor(cursor)
-    if nextday != []:
-        if nextday[0][4] != 'NA' and data[k][4] != 'NA':
-            formattedData = formattedData + [[(nextday[0][4] - data[k][4])/data[k][4]] + data[k][3:]]
-
-        
-
-
-
-
-  
-print formattedData[0:10]
-##print data[-1]
-##print len(data)
-##print mean
-
-cnx.close()
-
-
-NumOfVars = len(formattedData[0]) - 1
-print NumOfVars
-
-Data = formattedData
-    
-#print XVect
-#print YVect
+def formatData(data,symbol):
+    formattedData = []
+    for k in range(len(data)):
+        entry = data[k]
+        entrytime = entry[2]
+        querytimestart = entrytime + datetime.timedelta(days=1, seconds = -30)
+        querytimeend = entrytime + datetime.timedelta(days=1, seconds = 30)
+        querystr  = "select * from masterdata where symbol = " + symbol + \
+                        " and time_gathered >= '" + str(querytimestart) + \
+                        "' and time_gathered <= '" + str(querytimeend) + "' ;"
+        #print querystr
+        query = (querystr)
+        cursor = cnx.cursor()
+        cursor.execute(query)
+        nextday = cleanCursor(cursor)
+        if nextday != []:
+            if 'NA' == nextday[0][4] or 'NA' in data[k][:NumOfVars+3]\
+               or '' in data[k][:NumOfVars+3]:
+                1
+            #if nextday[0][4] != 'NA' and data[k][4] != 'NA':
+            else:
+                formattedData = formattedData + [[(nextday[0][4] - data[k][4])/data[k][4]] + data[k][3:]]
+    return formattedData
 
 ### Create Test Set
-test_set = []
-indicies = []
-for i in range(len(Data)/10):
-    indi = random.randrange(len(Data))
-    test_set = test_set + [Data[indi]]
-    Data = Data[:indi] + Data[(indi +1):]
+def createTestSet(Data):
+    test_set = []
+    indicies = []
+    for i in range(len(Data)/10):
+        indi = random.randrange(len(Data))
+        test_set = test_set + [Data[indi]]
+        Data = Data[:indi] + Data[(indi +1):]
+    return (Data, test_set)
 
-### Linear Regression Hypothesis
-Theta_naught = [0]
-for i in range(NumOfVars):
-    Theta_naught = Theta_naught + [1]
-Theta_naught = numpy.array(Theta_naught)
+
 
 ###Predicted value
 def hTheta(Theta, x):
-    return Theta[0] + numpy.dot(Theta[1:],x)
-
+    try:
+        return Theta[0] + numpy.dot(Theta[1:],x)
+    except:
+        print Theta, x
 ### Cost Function
 def JTheta(Theta, Data):
     cost = 0
@@ -123,8 +106,9 @@ def JTheta(Theta, Data):
 ### Run Gradient Descent
 
 
-def GradDescent(Theta,Data,a, iterations):
+def GradDescent(Theta,Data,a, iterations,symbol):
     Thetas = []
+    maxDJs = []
     for i in range(iterations):
         DJ0 = 0
         for k in range(len(Data)):
@@ -145,23 +129,28 @@ def GradDescent(Theta,Data,a, iterations):
             DJm = DJm/(NumOfVars)
             DJ = DJ + [DJm]
         DJ = numpy.array(DJ)  
-        
+        maxDJs = maxDJs + [max(DJ)]
         Theta = Theta - a*DJ
         Thetas = Thetas + [Theta[1]]
-    print(len(Thetas))
+    #print(len(Thetas))
     fig = plt.figure()
-    plt.plot(range(iterations), Thetas)
+    plt.plot(range(iterations), maxDJs)
     #plt.plot(range(iterations), t1s)
+    maxDJ = 0
+    for k in range(6):
+        maxDJ = maxDJ + maxDJs[-(k+1)]
+    print "sum of last 6 max DJs:", maxDJ
     printstr = "y = " + str(Theta[0])
     for k in range(NumOfVars):
         printstr = printstr + " + " + str(Theta[k+1]) + "x_" + str(k+1)
     print printstr
-    plt.show()
-    #fig.savefig('test.png')
+    #plt.show()
+    figtitle = symbol[1:-1] + ".png"
+    fig.savefig(figtitle)
     model = []
     for k in range(NumOfVars+1):
         model = model + [Theta[k]]
-    print model
+    #print model
     return model
 
 
@@ -175,7 +164,7 @@ def testSetError(test_set, model):
         if math.copysign(1,y) == math.copysign(1,entry[0]):
             successes = successes + 1
         error = entry[0] - y
-        print entry[0], math.copysign(1,entry[0]), y, math.copysign(1,y)
+        #print entry[0], math.copysign(1,entry[0]), y, math.copysign(1,y)
         sqErrors = sqErrors + [error**2]
     #print "sqe", sqErrors
     SSE = 0
@@ -186,14 +175,39 @@ def testSetError(test_set, model):
     print "SD", SD
     print successes, "successes out of", len(test_set), "trials"
     print float(successes)/len(test_set)
+    print " "
+    print " "
     return SD
-            
-testSetError(test_set, GradDescent(Theta_naught,Data,.00001,100))
-#
-#plt.scatter(XVect,YVect)
-#plt.show()
+
+def genAndTest(symbol):
+    Data = formatData(cleanCursor(getData(symbol)),symbol)
+    #print Data[0:5]
+
+    ### Linear Regression Hypothesis
+    Theta_naught = [1]
+    for i in range(NumOfVars):
+        Theta_naught = Theta_naught + [1]
+    Theta_naught = numpy.array(Theta_naught)
+
+    testData = createTestSet(Data)
+
+    testSetError(testData[1], GradDescent(Theta_naught,testData[0],.00001,100,symbol))
+
+stat_list = ["cp", "pr" ,"open", "vol", "market_cap","pe_ratio", "Div", "eps", "Shares", "beta", "inst" ]
+
+stock_list = ["'DRYS'", "'AAPL'", "'RAD'", "'F'", "'CHK'", "'S'", \
+              "'BAC'", "'AMD'","'FB'"]
+
+NumOfVars = 3
+
+for symbol in stock_list:
+    genAndTest(symbol)
 
 
+
+
+
+cnx.close()
 
 
 
