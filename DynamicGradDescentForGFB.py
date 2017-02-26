@@ -20,8 +20,8 @@ cnx = mysql.connector.connect(user='g', password='g',
 def getData(symbol):
 
             
-    querystr = "select * from masterdata where " + \
-                "time_gathered >= '2017-02-07 06:00:00' " + \
+    querystr = "select * from masterdatab where pr is not null and " + \
+                "time_gathered >= '2017-02-20 06:00:00' " + \
                 "and time_gathered <= '2017-02-21 14:32:56' " + \
                 "and symbol = " + symbol + " ; "
     print querystr
@@ -33,21 +33,18 @@ def getData(symbol):
 
 def cleanCursor(cursor):
     data = []
-    mean = 0
+
     for entry in cursor:
-        newentry = list(entry[:3])
-        #indicies = range(len(entry)-3)
-        indicies = range(NumOfVars)
-        for k in indicies:
-            item = entry[k+3]
-            newitem =''
-            for letter in item:
-                newitem = newitem + str(letter)
+        newentry = []
+        for item in entry:
             try:
-                newentry = newentry + [float(newitem)]
+                newitem = [float(item)]
             except:
-                newentry = newentry + [newitem]
+                newitem = [item]
+            newentry = newentry + newitem
         data = data + [newentry]
+    #print data[0:2]
+
     return data
 
 
@@ -58,7 +55,7 @@ def formatData(data,symbol):
         entrytime = entry[2]
         querytimestart = entrytime + datetime.timedelta(days=1, seconds = -30)
         querytimeend = entrytime + datetime.timedelta(days=1, seconds = 30)
-        querystr  = "select * from masterdata where symbol = " + symbol + \
+        querystr  = "select * from masterdatab where pr is not null and symbol = " + symbol + \
                         " and time_gathered >= '" + str(querytimestart) + \
                         "' and time_gathered <= '" + str(querytimeend) + "' ;"
         #print querystr
@@ -66,13 +63,10 @@ def formatData(data,symbol):
         cursor = cnx.cursor()
         cursor.execute(query)
         nextday = cleanCursor(cursor)
-        if nextday != []:
-            if 'NA' == nextday[0][4] or 'NA' in data[k][:NumOfVars+3]\
-               or '' in data[k][:NumOfVars+3]:
-                1
-            #if nextday[0][4] != 'NA' and data[k][4] != 'NA':
-            else:
-                formattedData = formattedData + [[(nextday[0][4] - data[k][4])/data[k][4]] + data[k][3:]]
+        if len(nextday) > 0:
+            #print nextday , data[k]
+            formattedData = formattedData + [[(nextday[0][4] - data[k][4])/data[k][4]] + data[k][3:]]
+    #print formattedData[0:2]
     return formattedData
 
 ### Create Test Set
@@ -201,7 +195,8 @@ def testSetError(test_set, model):
     successes = 0
     for entry in test_set:
         y = model[0]
-        for k in range(len(entry)-1):
+        #print model, entry
+        for k in range(len(model)-1):
             y = y + (entry[k+1])*(model[k+1])
         if math.copysign(1,y) == math.copysign(1,entry[0]):
             successes = successes + 1
@@ -233,7 +228,7 @@ def genAndTest(symbol):
 
     testData = createTestSet(Data)
 
-    testSetError(testData[1], GradDescent(Theta_naught,testData[0],.001,50000,symbol))
+    testSetError(testData[1], GradDescent(Theta_naught,testData[0],.0001,5000,symbol))
 
 stat_list = ["cp", "pr" ,"open", "vol", "market_cap","pe_ratio", "Div", "eps", "Shares", "beta", "inst" ]
 
@@ -247,7 +242,7 @@ for symbol in stock_list:
 
 
 def createTypedTable():
-    querystr  = "select * from masterdata where time_gathered >= '2017-01-01 08:00:00' ;"
+    querystr  = "select * from masterdatab where time_gathered >= '2017-01-01 08:00:00' ;"
     query = (querystr)
     cursor = cnx.cursor()
     cursor.execute(query)
