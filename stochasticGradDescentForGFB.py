@@ -21,7 +21,7 @@ def getData(symbol):
 
             
     querystr = "select * from masterdatab where pr is not null and " + \
-                "time_gathered >= '2017-02-20 06:00:00' " + \
+                "time_gathered >= '2017-02-10 06:00:00' " + \
                 "and time_gathered <= '2017-02-21 14:32:56' " + \
                 "and symbol = " + symbol + " ; "
     print querystr
@@ -100,27 +100,33 @@ def JTheta(Theta, Data):
 ### Run Gradient Descent
 
 
-def GradDescent(Theta,Data,a, iterations,symbol):
+def GradDescent(Theta,Data,a, iterations,maxIterations,symbol):
+    baseIterations = (NumOfVars+1)*40
+    model = []
+    for k in range(NumOfVars+1):
+        model = model + [Theta[k]]
+    if len(Data) < baseIterations or iterations > maxIterations:
+        print Theta
+        print model
+        return model
     Thetas = []
     maxDJs = []
     maxCount = 0
-    for i in range(iterations):
+    for i in range(baseIterations):
+        iterations = iterations + 1
         DJ0 = 0
-        for k in range(len(Data)):
-            x = []
-            for j in range(NumOfVars):
-                x = x + [Data[k][j+1]]
-            DJ0 = DJ0 + (hTheta(Theta,x) - Data[k][0])
+        x = []
+        for j in range(NumOfVars):
+            x = x + [Data[i][j+1]]
+        DJ0 = DJ0 + (hTheta(Theta,x) - Data[i][0])
         DJ0 = DJ0/(NumOfVars)
         DJ = [DJ0]
-        
         for m in range(NumOfVars):
             DJm = 0
-            for k in range(len(Data)):
-                x = []
-                for j in range(NumOfVars):
-                    x = x + [Data[k][j+1]]
-                DJm = DJm + (hTheta(Theta,x) - Data[k][0])*x[m]
+            x = []
+            for j in range(NumOfVars):
+                x = x + [Data[i][j+1]]
+            DJm = DJm + (hTheta(Theta,x) - Data[i][0])*x[m]
             DJm = DJm/(NumOfVars)
             DJ = DJ + [DJm]
         DJ = numpy.array(DJ)  
@@ -133,7 +139,8 @@ def GradDescent(Theta,Data,a, iterations,symbol):
             for k in range(2*NumOfVars):
                 maxDJ = maxDJ + maxDJs[-(k+1)]
             if maxDJ < 1:
-                return printResults(maxDJs,Theta,symbol,maxCount)
+                print model
+                return model
             growthCount = 0
             for k in range(2*NumOfVars):
                 if maxDJs[-(k+1)] > maxDJs[-(k+2)]:
@@ -149,7 +156,7 @@ def GradDescent(Theta,Data,a, iterations,symbol):
                 print "alpha changed to", a, "on iteration", len(maxDJs)
                 print "GD restarted with new alpha"
                 maxCount = 0
-    return printResults(maxDJs,Theta,symbol,maxCount)
+    return GradDescent(Theta,Data[baseIterations:],.0001,0,500,symbol) 
                 
                 
     #print(len(Thetas))
@@ -193,6 +200,7 @@ def printResults(maxDJs,Theta,symbol,maxCount):
 def testSetError(test_set, model):
     sqErrors = []
     successes = 0
+    print model
     for entry in test_set:
         y = model[0]
         #print model, entry
@@ -223,12 +231,12 @@ def genAndTest(symbol):
     ### Linear Regression Hypothesis
     Theta_naught = [1]
     for i in range(NumOfVars):
-        Theta_naught = Theta_naught + [1]
+        Theta_naught = Theta_naught + [random.random()]
     Theta_naught = numpy.array(Theta_naught)
 
     testData = createTestSet(Data)
 
-    testSetError(testData[1], GradDescent(Theta_naught,testData[0],.0001,500,symbol))
+    testSetError(testData[1], GradDescent(Theta_naught,testData[0],.0001,0,500,symbol))
 
 stat_list = ["cp", "pr" ,"open", "vol", "market_cap","pe_ratio", "Div", "eps", "Shares", "beta", "inst" ]
 
@@ -237,8 +245,10 @@ stock_list = ["'AMD'", "'F'", "'AAPL'", "'RAD'", "'CHK'", "'S'", \
 
 NumOfVars = 3
 
-for symbol in stock_list:
-    genAndTest(symbol)
+genAndTest("'F'")
+
+##for symbol in stock_list:
+##    genAndTest(symbol)
 
     
 
