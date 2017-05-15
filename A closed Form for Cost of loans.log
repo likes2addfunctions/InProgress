@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.16)  2 MAY 2017 14:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.16)  3 MAY 2017 10:40
 entering extended mode
 **"A closed Form for Cost of loans.tex"
 ("A closed Form for Cost of loans.tex"
@@ -732,7 +732,7 @@ Here is how much of TeX's memory you used:
  11661 multiletter control sequences out of 15000+200000
  14561 words of font info for 56 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 44i,11n,43p,887b,336s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,11n,43p,886b,336s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\gnovello\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\cm\dpi600
 \cmsy8.pk> <C:\Users\gnovello\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\c
 m\dpi657\cmex10.pk> <C:\Users\gnovello\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
@@ -755,10 +755,10 @@ ppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\cm\dpi600\cmbx10.pk> <C:\Users\g
 novello\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\cm\dpi600\cmr12.pk> <C:
 \Users\gnovello\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\cm\dpi600\cmr17
 .pk>
-Output written on "A closed Form for Cost of loans.pdf" (4 pages, 99640 bytes).
-
+Output written on "A closed Form for Cost of loans.pdf" (4 pages, 100003 bytes)
+.
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
+ 369 PDF objects out of 1000 (max. 8388607)
  13 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
