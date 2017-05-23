@@ -20,11 +20,21 @@ cnx = mysql.connector.connect(user='g', password='g',
 def getData(symbol):
 
             
-    querystr = "select * from masterdata where " + \
-                "time_gathered >= '2017-02-08 08:31:00' " + \
-                "and time_gathered <= '2017-02-08 10:32:56' " + \
+    querystr = "select * from masterdatab where pr is not null and " + \
+                "time_gathered >= '2017-03-21 06:00:00' " + \
+                "and time_gathered <= '2017-03-21 12:32:56' " + \
                 "and symbol = " + symbol + " ; "
-    print (querystr)
+    print querystr
+    query = querystr
+    cursor = cnx.cursor()
+    cursor.execute(query)
+    return cursor
+
+def getDatapt(symbol):        
+    querystr = "select * from masterdatab where " + \
+                "time_gathered >= '2017-04-24 08:31:00' " + \
+                "and time_gathered <= '2017-04-24 8:32:00' " + \
+                "and symbol = " + symbol + " ; "
     query = querystr
     cursor = cnx.cursor()
     cursor.execute(query)
@@ -34,24 +44,21 @@ def getData(symbol):
 
 def cleanCursor(cursor):
     data = []
-    mean = 0
+
     for entry in cursor:
-        newentry = list(entry[:3])
-        #indicies = range(len(entry)-3)
-        indicies = range(NumOfVars)
-        for k in indicies:
-            item = entry[k+3]
-            newitem =''
-            for letter in item:
-                newitem = newitem + str(letter)
+        newentry = []
+        for item in entry:
             try:
-                newentry = newentry + [float(newitem)]
+                newitem = [float(item)]
             except:
-                newentry = newentry + [newitem]
+                newitem = [item]
+            newentry = newentry + newitem
         data = data + [newentry]
+    #print data
+
     return data
 
-
+#returns a list of data [%change over 24hrs, data1, data2, ...]
 def formatData(data,symbol):
     formattedData = []
     for k in range(len(data)):
@@ -59,7 +66,7 @@ def formatData(data,symbol):
         entrytime = entry[2]
         querytimestart = entrytime + datetime.timedelta(days=1, seconds = -30)
         querytimeend = entrytime + datetime.timedelta(days=1, seconds = 30)
-        querystr  = "select * from masterdata where symbol = " + symbol + \
+        querystr  = "select pr from masterdatab where pr is not null and symbol = " + symbol + \
                         " and time_gathered >= '" + str(querytimestart) + \
                         "' and time_gathered <= '" + str(querytimeend) + "' ;"
         #print querystr
@@ -67,13 +74,10 @@ def formatData(data,symbol):
         cursor = cnx.cursor()
         cursor.execute(query)
         nextday = cleanCursor(cursor)
-        if nextday != []:
-            if 'NA' == nextday[0][4] or 'NA' in data[k][:NumOfVars+3]\
-               or '' in data[k][:NumOfVars+3]:
-                1
-            #if nextday[0][4] != 'NA' and data[k][4] != 'NA':
-            else:
-                formattedData = formattedData + [[(nextday[0][4] - data[k][4])/data[k][4]] + data[k][3:]]
+        if len(nextday) > 0:
+            #print nextday , data[k]
+            formattedData = formattedData + [[(nextday[0][0] - data[k][4])/data[k][4]] + data[k][3:3+NumOfVars]]
+    #print formattedData[0:2]
     return formattedData
 
 ### Create Test Set
@@ -138,58 +142,39 @@ def GradDescent(Theta,Data,a, iterations,symbol):
                 Theta = []
                 for k in range(NumOfVars+1):
                     Theta = Theta + [1]
-                a = a/10
-    #print(len(Thetas))
-    fig = plt.figure()
-    plt.plot(range(iterations), maxDJs)
-    #plt.plot(range(iterations), t1s)
-    maxDJ = 0
-    for k in range(6):
-        maxDJ = maxDJ + maxDJs[-(k+1)]
-    print ("sum of last 6 max DJs:", maxDJ)
-    printstr = "y = " + str(Theta[0])
-    for k in range(NumOfVars):
-        printstr = printstr + " + " + str(Theta[k+1]) + "x_" + str(k+1)
-    print (printstr)
-    #plt.show()
-    figtitle = symbol[1:-1] + ".png"
-    fig.savefig(figtitle)
+                a = a/2
+            DJsum = 0
+            for k in range(4):
+                DJsum = DJsum + maxDJs[-1*(k+1)]
+            if DJsum < 1:
+                print str(symbol), len(Thetas)
+                model = []
+                for k in range(NumOfVars+1):
+                    model = model + [Theta[k]]
+                return model
     model = []
     for k in range(NumOfVars+1):
         model = model + [Theta[k]]
-    #print (model)
     return model
 
 
 def testSetError(test_set, model):
     sqErrors = []
     successes = 0
+
     for entry in test_set:
+
         y = model[0]
         for k in range(len(entry)-1):
             y = y + (entry[k+1])*(model[k+1])
         if math.copysign(1,y) == math.copysign(1,entry[0]):
             successes = successes + 1
-##        error = entry[0] - y
-##        #print entry[0], math.copysign(1,entry[0]), y, math.copysign(1,y)
-##        sqErrors = sqErrors + [error**2]
-##    #print "sqe", sqErrors
-##    SSE = 0
-##    for x in sqErrors:
-##        SSE = SSE + x
-##    print ("SSE", SSE)
-##    SD = numpy.sqrt(SSE)/(len(model) - 1)
-##    print ("SD", SD)
-##    print (successes, "successes out of", len(test_set), "trials")
     p = (float(successes)/len(test_set))
-##    print p
-##    print (" ")
-##    print (" ")
-    return (p,model)
+    model = [p] + model
+    return model
 
 def genAndTest(symbol):
     Data = formatData(cleanCursor(getData(symbol)),symbol)
-    #print Data[0:5]
 
     ### Linear Regression Hypothesis
     Theta_naught = [1]
@@ -199,7 +184,8 @@ def genAndTest(symbol):
 
     testData = createTestSet(Data)
 
-    return testSetError(testData[1], GradDescent(Theta_naught,testData[0],.00001,100,symbol))
+    model = [symbol] + testSetError(testData[1], GradDescent(Theta_naught,testData[0],.01,500,symbol))
+    return model
 
 stat_list = ["cp", "pr" ,"open", "vol", "market_cap","pe_ratio", "Div", "eps", "Shares", "beta", "inst" ]
 
@@ -210,8 +196,53 @@ stock_listb = ["'AMD'","'FB'"]
 
 NumOfVars = 3
 
-for symbol in stock_listb:
-    print genAndTest(symbol)
+def make_current_prediction(model):
+    symbol = model[0]
+    currentData = formatData(cleanCursor(getDatapt(symbol)),symbol)[0]
+    y = model[2]
+    for k in range(len(currentData)-1):
+        y = y + (currentData[k+1]*(model[k+3]))
+    printstr  = "predicted change from " + str(symbol) + " is " + str(y) + "%"
+    print printstr
+    print "expceted:", symbol, y*model[1]
+    return (symbol, y*model[1])
+
+
+
+def compare_models(cutoff):
+    Models = []
+    for symbol in stock_list:
+        model = genAndTest(symbol)
+        if model[1] > cutoff:
+            Models = Models + [model]
+    print " "
+    print Models
+    print " "
+    predictions = []
+    sell = []
+    buy = []
+    for model in Models:
+        predictions = predictions + [make_current_prediction(model)]
+        print " "
+    total_expectation = 0
+    for Entry in predictions:
+        Entry = list(Entry)
+        if Entry[1] < 0:
+            sell = sell + [Entry[0]]
+        else:
+            buy = buy + [Entry]
+            total_expectation = total_expectation + Entry[1]
+    for Entry in buy:
+        Entry[1] = Entry[1]/total_expectation
+    print "sell", sell
+    print "buy", buy
+        
+
+
+compare_models(.7)
+
+
+            
 
 
 

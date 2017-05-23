@@ -1,0 +1,81 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+
+ \geometry{margin=1in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Research Proposal\\
+ for Doctorate of Philosophy in Mathematics}
+\author{Galen Novello}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+In a lecture given at a fields medalist symposium at UCLA, Richard Borcherds outlined a connection between Lie algebras and quantum field theory.  He argues that a quantum field theory can be thought of as a representation of a "fourth-level" symmetric algebra. Starting with a finite dimensional vector space, $V$, one may take the symmetric algebra $S(V)$ to produce a space of polynomials in the coordinates of $V$.  The symmetric algebra of this space of polynomials, essentialy corresponds to the space of Lagrangians, and the symmetric algebra of Lagrangians to the space of renormalizations.  The tensor algebra of this space of renormalizations, $TSSS(V)$, is the type of space in which the quantum field theories live.   
+
+This construction suggests a method for computing the algebra for the field theory arising from a given Lagrangian. The process is essentially to analytically continue Green's Functions arising from said lagrangian to produce distributions that satisfy Whitman axioms and then produce the algebra from this space of distributions.  The result is an infinite dimensional (symmetric) Lie algebra the representation of which can be though of as the appropriate quantum field theory.
+
+My research intent is to pursue this line of reasoning.  To first solidify and update my knowledge of the appropriate pieces of this recipe and then pursue representations of infinite dimensional lie algbreas with the hope of doing one of more of the following 
+\begin{itemize}
+\item furthering the subject of representations of infinite dimensional lie algebras,
+\item explicitly computing representations of field theories corresponding to specific Lagrangians or families of Lagrangians,
+\item looking for general formulas, shortcuts, and/or ways to improve the method,
+\item considering the effect of removing the locality requirement from the space of distributions that gives rise to the Lie algbra. 
+
+\end{itemize}
+
+The last consideration is suggested by recent results in quantum mechanics, which suggest that entanglement allows for information about quantum state to be transferred instantaneously. It is the suspicion of this author that the same is true of gravity, and this suggests another possible direction for progress: to see what adjustments, if any, must be made to produce representations for a relativistic quantum field theories and try and compute some of these. 
+
+\end{document}

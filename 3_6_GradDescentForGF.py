@@ -21,14 +21,13 @@ def getData(symbol):
 
             
     querystr = "select * from masterdata where " + \
-                "time_gathered >= '2017-02-08 08:31:00' " + \
-                "and time_gathered <= '2017-02-08 10:32:56' " + \
+                "time_gathered >= '2017-02-07 06:00:00' " + \
+                "and time_gathered <= '2017-02-21 14:32:56' " + \
                 "and symbol = " + symbol + " ; "
-    print (querystr)
+    print querystr
     query = querystr
     cursor = cnx.cursor()
     cursor.execute(query)
-    cnx.close()
     return cursor
 
 
@@ -93,7 +92,7 @@ def hTheta(Theta, x):
     try:
         return Theta[0] + numpy.dot(Theta[1:],x)
     except:
-        print (Theta, x)
+        print Theta, x
 ### Cost Function
 def JTheta(Theta, Data):
     cost = 0
@@ -128,17 +127,11 @@ def GradDescent(Theta,Data,a, iterations,symbol):
                     x = x + [Data[k][j+1]]
                 DJm = DJm + (hTheta(Theta,x) - Data[k][0])*x[m]
             DJm = DJm/(NumOfVars)
-            DJ = DJ + [abs(DJm)]
+            DJ = DJ + [DJm]
         DJ = numpy.array(DJ)  
         maxDJs = maxDJs + [max(DJ)]
         Theta = Theta - a*DJ
         Thetas = Thetas + [Theta[1]]
-        if len(maxDJs) > 4:
-            if maxDJs[-1] > maxDJs[-2] and maxDJs[-1] > maxDJs[-3]:
-                Theta = []
-                for k in range(NumOfVars+1):
-                    Theta = Theta + [1]
-                a = a/10
     #print(len(Thetas))
     fig = plt.figure()
     plt.plot(range(iterations), maxDJs)
@@ -146,18 +139,18 @@ def GradDescent(Theta,Data,a, iterations,symbol):
     maxDJ = 0
     for k in range(6):
         maxDJ = maxDJ + maxDJs[-(k+1)]
-    print ("sum of last 6 max DJs:", maxDJ)
+    print "sum of last 6 max DJs:", maxDJ
     printstr = "y = " + str(Theta[0])
     for k in range(NumOfVars):
         printstr = printstr + " + " + str(Theta[k+1]) + "x_" + str(k+1)
-    print (printstr)
+    print printstr
     #plt.show()
     figtitle = symbol[1:-1] + ".png"
     fig.savefig(figtitle)
     model = []
     for k in range(NumOfVars+1):
         model = model + [Theta[k]]
-    #print (model)
+    #print model
     return model
 
 
@@ -170,22 +163,21 @@ def testSetError(test_set, model):
             y = y + (entry[k+1])*(model[k+1])
         if math.copysign(1,y) == math.copysign(1,entry[0]):
             successes = successes + 1
-##        error = entry[0] - y
-##        #print entry[0], math.copysign(1,entry[0]), y, math.copysign(1,y)
-##        sqErrors = sqErrors + [error**2]
-##    #print "sqe", sqErrors
-##    SSE = 0
-##    for x in sqErrors:
-##        SSE = SSE + x
-##    print ("SSE", SSE)
-##    SD = numpy.sqrt(SSE)/(len(model) - 1)
-##    print ("SD", SD)
-##    print (successes, "successes out of", len(test_set), "trials")
-    p = (float(successes)/len(test_set))
-##    print p
-##    print (" ")
-##    print (" ")
-    return (p,model)
+        error = entry[0] - y
+        #print entry[0], math.copysign(1,entry[0]), y, math.copysign(1,y)
+        sqErrors = sqErrors + [error**2]
+    #print "sqe", sqErrors
+    SSE = 0
+    for x in sqErrors:
+        SSE = SSE + x
+    print "SSE", SSE
+    SD = numpy.sqrt(SSE)/(len(model) - 1)
+    print "SD", SD
+    print successes, "successes out of", len(test_set), "trials"
+    print float(successes)/len(test_set)
+    print " "
+    print " "
+    return SD
 
 def genAndTest(symbol):
     Data = formatData(cleanCursor(getData(symbol)),symbol)
@@ -199,25 +191,23 @@ def genAndTest(symbol):
 
     testData = createTestSet(Data)
 
-    return testSetError(testData[1], GradDescent(Theta_naught,testData[0],.00001,100,symbol))
+    testSetError(testData[1], GradDescent(Theta_naught,testData[0],.00001,100,symbol))
 
 stat_list = ["cp", "pr" ,"open", "vol", "market_cap","pe_ratio", "Div", "eps", "Shares", "beta", "inst" ]
 
 stock_list = ["'DRYS'", "'AAPL'", "'RAD'", "'F'", "'CHK'", "'S'", \
               "'BAC'", "'AMD'","'FB'"]
-stock_listb = ["'AMD'","'FB'"]
-
 
 NumOfVars = 3
 
-for symbol in stock_listb:
-    print genAndTest(symbol)
+for symbol in stock_list:
+    genAndTest(symbol)
 
 
 
 
 
-
+cnx.close()
 
 
 

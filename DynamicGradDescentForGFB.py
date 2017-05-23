@@ -22,7 +22,7 @@ def getData(symbol):
             
     querystr = "select * from masterdatab where pr is not null and " + \
                 "time_gathered >= '2017-02-20 06:00:00' " + \
-                "and time_gathered <= '2017-02-21 14:32:56' " + \
+                "and time_gathered <= '2017-02-21 10:32:56' " + \
                 "and symbol = " + symbol + " ; "
     print querystr
     query = querystr
@@ -228,7 +228,7 @@ def genAndTest(symbol):
 
     testData = createTestSet(Data)
 
-    testSetError(testData[1], GradDescent(Theta_naught,testData[0],.0001,500,symbol))
+    testSetError(testData[1], GradDescent(Theta_naught,testData[0],.0001,5,symbol))
 
 stat_list = ["cp", "pr" ,"open", "vol", "market_cap","pe_ratio", "Div", "eps", "Shares", "beta", "inst" ]
 
