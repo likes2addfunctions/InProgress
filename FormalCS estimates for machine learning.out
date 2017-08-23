@@ -1,0 +1,14 @@
+\BOOKMARK [1][-]{section.1}{Cauchy Sequences}{}% 1
+\BOOKMARK [1][-]{section.2}{ApplyingThe Method to Gradient Descent}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Gradient Descent}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Initial Data, visual estimates of convergence time for different numbers of variables.}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{How pseudo random data for these tests is generated.}{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Data on the rate of convergence at randomness level blank for different numbers of variables}{subsection.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{The Cost of Implementing the Condition}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.4}{Empirical Data}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.5}{The method of max DJ}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Computational savings of max DJ method}{subsection.2.5}% 10
+\BOOKMARK [1][-]{section.3}{Applying the Method to neural networks}{}% 11
+\BOOKMARK [2][-]{subsection.3.1}{Neural Networks}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Tweaking Max DJ for NNs}{section.3}% 13
+\BOOKMARK [1][-]{section.4}{Proposals for Future Research}{}% 14
