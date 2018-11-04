@@ -1,0 +1,131 @@
+<html>
+<head>
+<Title> Multivariable Calculus </Title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+<body>
+text just for show
+
+<center>
+<h1>Theorems and Skills for Mulitvaribale Calculus</h1>
+</center>
+	
+<h2>Intermediate Value Theorem</h2>
+
+
+<h2>Lagrange Multipliers</h2>
+To optimize a function $f$ constrained to the parameter solve 
+$\nabla f = \lambda \nabla g$
+
+<h2>Jensen's Inequality</h2>
+Suppose that $A \subset \mathbb{R}^{n}$ is convex and that $f$ is convex on $A$.
+Then for any point $a_{1}, \dots, a_{r} \in A$ and nonnegative constants $\lambda_{1}, \dots, \lambda_{r}$
+such that $\displaystyle \sum \lambda_{k} = 1$ one has,
+	$$f(\sum \lambda_{k}a_{k}) \leq \sum \lambda_{k}f(a_{k}$$
+	
+<i>$f$ is <u>convex on $A$</u> if $f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y)$ for all
+$x,y \in A$ and $0 \leq \lambda \leq 1$. </i>
+
+
+<h2>Relationship between smoothness of partial and total derivatives. </h2>
+Continuity of partial derivatives implies differentiability
+
+
+<h2>Test for invertibility of the total derivative</h2>
+The derivative $Df$ is invertible $\iff$ the jacobian is invertible.
+
+<h2>Implicit Function Theorem [Pugh p286]</h2>
+Suppose $U \subset \mathbb{R}^{n} \times \mathbb{R}^{m}$ and $f: U \rightarrow \mathbb{R}^{m}$ 
+is $C^{r}$. Then for any $(x_{0},y_{0}) \in U$ there is a neighborhood, $V$ of $z_{0} = f((x_{0},y_{0}))$
+such that $f$ is the graph of a unique $C^{r}$ function $y = g(x)$ on $V$.
+
+
+<h2>Inverse Function Theorem</h2> 
+Suppose $U \subset \mathbb{R}^{m} \times \mathbb{R}^{m}$ and $f: U \rightarrow \mathbb{R}^{m}$ 
+is $C^{r}$. If at some point $p \in U$, $(Df)_{p}$ is an isomorphism, then there are neighborhoods
+$U' \ni p$, $V' \ni f(p)$ such that $f$ is a diffeomorphism $U' \rightarrow V'$.
+
+<h2>Schwartz Theorem [HK61 p340]</h2>
+For all $x,y \in \mathbb{R}^{n}$ one has
+$ |x \cdot y| \leq ||x||\ ||y||$ with equatlity only when there is $a \in \mathbb{R}$ such that $y = ax$
+
+
+<h2>Use of the Hessian</h2>
+For a $C^{2}$ function $f$ on a convex set $A \subset \mathbb{R}^{n}$ define the Hessian matrix as
+$\nabla^{2} f = [\partial_{x_{i}}\partial_{x_{j}} f]$. Then $f$ is convex iff $\nabla^{2} f$ is positive definite.
+
+
+<h2>Fundamenetal Theorem for Line Integrals</h2>
+If $C$ is a smooth curve in $\mathbb{R}^{n}$ given by the vecor equation ${\bf r}(t), a\leq t\leq b$
+then $$\int_{C} \nabla f \cdot d {\bf r} = f({\bf r}(b)) - f({\bf r}(a))$$
+
+
+<h2>Green's Theorem</h2>
+Let $C$ be a positively oriented, sufficiently smooth simple closed curve and let $D$ be the
+region bounded by $C$. If $P,Q: \mathbb{R}^{2} \rightarrow \mathbb{R}$ 
+have conitnuous partial derivatives on some open set $U \supset D$ then 
+$$\int_{C} P dx + Q dy = 
+\int \int_{D} \left( {\partial Q \over \partial x} - {\partial P \over \partial y} \right) dA $$
+More generally, if we write ${\bf F} = P{\bf i} + Q{\bf j}$ and keep the hypotheses above, then
+
+$$\int_{C} {\bf F} \cdot {\bf n}\ ds = \int \int_{D} \mbox{div } {\bf F}(x,y)\ dA$$
+
+<h2>Gauss's (Divergence Theorem)</h2>
+Let $E$ be simple solid region with boundary surface $S$. Let ${\bf F}$ is a vector field
+on $\mathbb{R}^{3}$. If there is some $U \subset \mathbb{R}^{3}$ such that $E \subset U$ and
+the components of ${\bf F}$ have continuous partial derivatives on $U$, then 
+$$\int \int_{S}  {\bf F} \cdot d{\bf S} = \int \int \int _{E} \mbox{div } {\bf F}\ dV $$
+
+
+<h2>Stoke's Theorem</h2>
+Let $S$ be a sufficiently smooth curve with boundary cuvre $C$. Let ${\bf F}$ is a vector field
+on $\mathbb{R}^{3}$. If there is some $U \subset \mathbb{R}^{3}$ such that $S \subset U$ and
+the components of ${\bf F}$ have continuous partial derivatives on $U$, then 
+$$\int_{C} {\bf F} \cdot d{\bf r} = \int \int_{S} \mbox{curl } {\bf F} \cdot d{\bf S}$$
+
+
+<h2>Method of Laplace Expansions</h2>
+
+<h2>Surface Area of Parameterized surface </h2>
+Suppose a smooth surface $S$ is parameterized by the equation
+${\bf r}(u,v) = (x(u,v), y(u,v), z(u,v))$. Then the surface area of $S$ is given by 
+
+$$A(S) = \int \int _{D} | {\bf r}_{u} \times {\bf r}_{v} | dA$$
+
+
+<h2>Volume of the image of a function</h2>
+vol $f(\mathcal{B}) = \int \int \int_{\mathcal{B}} |Jac(f)| dx dy dz$
+
+
+<h2>Change of Variable Formula [Pugh 306]</h2>
+Given open sets $U,V \in \mathbb{R}^{2}$, a diffeomorphism $\phi: U \rightarrow V$
+and an integrable function $f: V \rightarrow \mathbb{R}$.  Then for $R \subset U$,
+$$\int_{R} f \circ \phi |J(\phi)| = \int_{\phi(R)} f$$
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

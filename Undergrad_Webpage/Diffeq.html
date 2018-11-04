@@ -1,0 +1,90 @@
+<html>
+<head>
+<Title> DIfferential Equations </Title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+<center>
+<h1>Theorems and Skills for Differential Equations</h1>
+</center>
+
+<h2>Separation of Variables</h2>
+
+If possible re-write $\frac{dx}{dt}= f(x,t)$ as $u(x) dx = v(t) dt$
+
+Given a differential equation, posit a solution of the form $\phi(t)\psi(x)$,
+plug in and use properties of the equation to determine $\phi, \psi$
+
+<h2>Picard's Theorem</h2>
+If $f:\mathbb{R}^{n} \times \mathbb{R} \rightarrow \mathbb{R}$ is Lipschitz on a 
+neighborhood $U = \{(x,t) : |x-x_{0}|< b, |t-t_{0}| < a\}$ then
+$$\frac{dx}{dt} = f(x,t),\ f(t_{0}) = x_{0}$$
+has a unique solution on the inteveral $\displaystyle |t-t_{0}| < \min(a, {b \over \sup_{U} |f|})$.
+
+
+<h2>Integrating Factor</h2>
+To solve $y' + P(x)y = Q(x)$ multiply by $\displaystyle e^{\int P(x) dx}$ and integrate
+
+
+<h2>Implicit Function Theorem</h2>
+Suppose $U \subset \mathbb{R}^{n} \times \mathbb{R}^{m}$ and $f: U \rightarrow \mathbb{R}^{m}$ 
+is $C^{r}$. Then for any $(x_{0},y_{0}) \in U$ there is a neighborhood, $V$ of $z_{0} = f((x_{0},y_{0}))$
+such that $f$ is the graph of a unique $C^{r}$ function $y = g(x)$ on $V$.
+
+Moreover, the partial derivatives of $y$ are given by
+$${dy \over dx_{i}} = {{\partial f \over \partial x_{i} }\over {\partial f \over \partial y}}$$
+
+<h2>Solution of Differential Equations with Characteristic Equation</h2>
+If $r$ is a solution to the characteristic equation of a linear homogenous differential equation
+then $Ae^{rt}$ is a solution. If $r$ is a repeated root then the solution must be multiplied by appropriate
+powers of $x$. If $r = a+ib$ is complex then the solution is $e^{at}(A \cos t + B \sin t)$.
+
+
+<h2>Method of Undetermined Coefficients</h2>
+To solve $ay'' + by' + cy = G(x)$ set $G(x) =0$ to find complementary solution
+then use the form of $G(x)$ to guess a particular solution of the same form.
+If you get a particular solution equal a complmentary solution, multiply the 
+particular solution by an appropriate power of $x$.  
+
+
+<h2>Existence-Uniqueness Theorem</h2>
+
+
+<h2>Cayley-Hamilton Theorem </h2>
+Any matrix is a solution to it's own characteristic polynomial.
+
+<h2>Extension Theorem</h2>
+
+<h2>Rayleigh's (Plancharel's) Theorem</h2>
+If $\tilde{f}$ is the fourier transform of $f: \mathbb{R} \rightarrow \mathbb{R}$, $f$ is sufficiently smooth and decays 
+sufficiently quickly then
+$$\int_{\mathbb{R}} |f(x)|^2dx = \int_{\mathbb{R}} |\tilde{f}(t)|^2 dt$$
+
+
+<h2>Solution by Power Series</h2>
+Posit a solution of the form $\sum a_{n}x^{n}$, plug in to the DE and try to
+find a fomula for $a_{n}$ recursively.
+
+
+<h2></h2>
+<h2></h2>
+<h2></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

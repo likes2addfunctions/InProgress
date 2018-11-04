@@ -1,0 +1,160 @@
+<html>
+<head>
+<Title> Real Analysis </Title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+<body>
+text just for show
+</body>
+
+<center>
+<h1> Theorems and Skills from Undergraduate Real Analysis </h1>
+</center>
+
+<h2>Cauchy-Schwarz Inequality</h2>
+$\displaystyle{\left( \sum_{i=1}^{n}a_ib_i \right)^2 \le \left(\sum_{i=1}^{n}a_i^2 \right)
+	 \left(\sum_{i=1}^{n}b_i^2 \right)}$
+
+<h2>Binomial Theorem</h2>
+$\displaystyle{(x+y)^n = \sum_{k=0}^{n} {n \choose k}x^{k}y^{n-k}}$
+
+<h2>Bolzano-Weirstrass Theorem</h2>
+Every bounded sequence in a metric space has a convergent subsequence.
+
+<h2>Change of Variable for Integration </h2>
+$\int f(u(x))u'(x) dx = \int f(u) du$
+
+<h2>Intermediate Value Theorem</h2>
+If $f$ is continuous on $[a,b]$ then for any $y$ between $f(a)$ and $f(b)$
+there is some $c \in [a,b]$ such that $f(c) = y$
+
+<h2>Taylor's Theorem</h2>
+If $f^{(n)}(t)$ exists for all $t \in (a,b)$ and $f^{(n-1)}(t)$ is continuous on $[a,b]$ then
+there for any $x, \alpha \in [a,b]$ there is beta in $[a,b]$ such that 
+$\displaystyle f(x) = f(\alpha) + \frac{f'(\alpha)}{1!}(x-\alpha) + \frac{f''(\alpha)}{2!}(x-\alpha)^ + \dots
+	\frac{f^{(n-1)}(\alpha)}{n!}(x-\alpha)^{n-1} +\frac{f^{(n)}(\beta)}{n!}(x-\alpha)^{n} $
+
+<h2>Jordan's Lemma</h2>
+ Let $C_{R}$ denote the circle of radius $R$ centerd at the origin of the complex plane. 
+ If $f \rightarrow 0$ on $C_{R}$ as $R \rightarrow \infty$ then 
+ <center> $\displaystyle{\int_{R} f(x) dx = 2\pi i \cdot}$ (Sum of Residues of $f$ 
+ in the upper half plane) </center>
+
+<h2>Mean Value Theorem</h2>
+<h4>For Derivatives</h4>
+If $f$ is differntiable on $(a,b)$ and continuous on $[a,b]$, then there 
+is some $c \in (a,b)$ such that $f'(c) = \frac{f(b) - f(a)}{b-a}$
+<h4>For Integrals</h4>
+If $f,g$ be continuous on $[a,b]$, then there 
+is some $c \in (a,b)$ such that $\displaystyle{\int_{a}^{b} f(t)g(t) dt =
+	 f(c)\int_{a}^{b}g(t)dt}$.
+
+<h2>Fixed Point Theorem [Rud87 p.220] </h2>
+If $X$ is a complete metric space and $\phi$ is a contraction $X \rightarrow X$,
+then there exists a unique $x \in X$ such that $\phi(x) = x$.
+<p>
+<it>$\phi$ is a contraction if $d(\phi(x), \phi(y)) \leq c\ d(x,y)$ for
+some $c \in \mathbb{R}$ and all $x,y \in X.$ </it>
+</p>
+<h2>Triangle Inequality</h2>
+$|x+y| \leq |x| + |y|$
+
+<h2>Taylor Expansions of Familiar Functions</h2>
+ <table style="width:100%">
+  <tr>
+    <td>$\displaystyle{\sin x = \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k+1}}{(2k+1)!}}$</td>
+    <td>$\displaystyle{\cos x = \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k}}{(2k)!}}$</td>
+  </tr>
+   <tr>
+    <td> &nbsp; </td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td>$\displaystyle{\frac{1}{1-x} = \sum_{k=0}^{\infty} x^{k}}$</td>
+    <td>$\displaystyle{\ln(1+x) = \sum_{k=1}^{\infty} \frac{(-1)^{k+1} x^{k}}{k}}$</td>
+  </tr>
+</table> 
+
+
+
+
+
+<h2>Tests for convergence</h2>
+<h4>Ratio Test</h4>
+$\displaystyle \sum a_{n}$ converges if $\displaystyle{\limsup_{n \rightarrow \infty} \left| \frac{a_{n+1}}
+{a_{n}} \right| < 1}$ and diverges if there exists $n_{0}$ such that the ratio is $\geq 1$ for all $n > n_{0}$.
+
+<h4>Integral Test</h4>
+Assume that $f(x) \geq 0 $ and $f$ decreases monotonically on $[k,\infty]$ then
+$\displaystyle{ \int_{k}^{\infty} f(x) dx}$ converges iff $\displaystyle \sum_{n=k}^{\infty} f(n)$ converges
+
+<h4>Root Test</h4>
+Given $\displaystyle \sum a_{n}$ let $\alpha = \limsup_{n\rightarrow \infty} \sqrt[n]{|a_{n}|}$.
+Then $a_{n}$ converges if $\alpha < 1$ and diverges if $\alpha > 1$.
+
+<h4>Leibniz Criterion</h4>
+If there exist $b_{n} > 0$ such that $a_{n} = (-1)^{n}b_{n}$ and $|a_{n}|$ decreases monotonically
+to zero then $\displaystyle \sum a_{n}$ converges. 
+
+<h4>Weirstrass M-Test</h4>
+Suppose that $f_{n}$ is a sequence of functions defined on a metric space $E$, the $\sum f_{n}$
+converges uniformly on $E$ if there exists $M_{n}$ such that $\sum M_{n}$ converges and 
+$\displaystyle |f_{n}(x)| \leq M_{n}$ for all $x \in E$ 
+
+<h2>L'Hospital's Rule</h2>
+Suppose $f$ and $g$ are differentiable and $g \neq 0$ on $(a,b)$. Suppose ${f' \over g'} \rightarrow A$
+as $x \rightarrow a$.  If $f,g \rightarrow 0$ or $g \rightarrow \infty$ as $x \rightarrow a$ then
+${f \over g} \rightarrow A$ as $x \rightarrow a$. 
+ 
+<h2>Integration by Parts </h2>
+$\int f'g = fg - \int fg'$
+
+<h2>Stone-Weirstrass Approximation</h2>
+If $f$ is a continuous complex function on $[a,b]$ then there exists a sequence of polynomials $P_{n}$
+such that $P_{n} \rightarrow f$ uniformly on $[a,b]$. 
+
+More generally if $\mathcal{A}$ is any algebra of functions that separates points and 
+vanishes nowhere on a compact set $K$ and continuous function on $K$ can be uniformly approximated by
+functions of $\mathcal{A}$.
+
+<p></p>
+<i>$\mathcal{A}$ vanishes nowhere on $K$ if for any point $x \in K$ there is $f \in \mathcal{A}$
+such that $f(x) \neq 0$. </i> 
+
+<p><i>$\mathcal{A}$ separates points on $K$ if for any points $x,y \in K$ there is $f \in \mathcal{A}$
+such that $f(x) \neq f(y)$.</i></p>
+
+<h2>Arzela-Ascoli Theorem [Pugh p.214]</h2>
+Any bounded equicontinuous sequence of functions in $C^{0}([a,b], \mathbb{R})$ has a
+uniformly convergent subsequence.
+
+<h2>Parseval's Identity</h2>
+Suppose that $f \in L^{2}([-\pi,\pi])$ and can be expressed $f(x) = \sum c_{n} e^{ixn}$. Then
+$\displaystyle \int_{-\pi}^{\pi} f(x) dx = \sum_{n = -\infty}^{\infty} |c_{n}|^{2}$ 
+
+<h2>Riemann-Lebesgue Lemma [Pugh p.163]</h2>
+A function $f: [a,b] \rightarrow \mathbb{R}$ is Riemann Integrable iff it is bounded and it's set
+of discontinuity points is of measure 0.
+
+<h2> The Fundamental Theorem of Calculus </h2>
+<h4>Version 1</h4>
+If $f$ is continuous on $[a,b]$ and $F' = f$ then 
+	$\displaystyle{\int _a^b f(x) dx = f(b) - f(a)}$
+<h4>Version 2</h4>
+$\displaystyle{f(x) = f(a) + \int_{a}^{x} f'(t) dt}$
+
+<h2> Heine Borel </h2>
+If $M$ is a metric space and $K \subset M$ Then $K$ is compact if and 
+only if $K$ is closed and bounded.
+
+
+
+
+
+</html>

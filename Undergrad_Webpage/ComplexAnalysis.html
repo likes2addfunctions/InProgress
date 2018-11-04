@@ -1,0 +1,186 @@
+<html>
+<head>
+<Title> Complex Funtions </Title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+<center>
+<h1>Theorems and Skills for Complex Funtions</h1>
+</center>
+
+<h2>Identity Theorem for Complex Funtions</h2>
+
+
+
+<h2>Cauchy's Root Test</h2>
+
+
+<h2>Comparison Test</h2>
+
+<h2>Stone-Weierstrass Approximation Theorem</h2>
+
+<h2>Open Mapping Theorem</h2>
+
+<h2>Inverse Function Theorem</h2>
+
+
+<h2>Fubini's Theorem</h2>
+
+<h2>Picks's Lemma</h2>
+
+<h2>Descartes Rule of signs</h2>
+
+<h2>Green's Theorem</h2>
+
+<h2>Deformation Theorem</h2>
+
+<h2>Casorati-Weierstrass Theorem</h2>
+
+<h2>Gauss-Lucas Theorem</h2>
+
+<h2>Nyquist Diagram</h2>
+
+<h2>Jordan's Lemma</h2>
+
+<h2>Fundamental Theorem of Algebra</h2>
+Every polynomial over the complex numbers has at least one root. 
+
+
+<h2>Cauchy's Theorem [Ahlfors p]</h2>
+Let $\Omega$ be a simply conneced region, a curve homologous to zero in $\Omega$
+and $f$ an anaytic functions on $\Omega$ then $$\int_{\gamma} f(z) dz = 0$$
+where $n(\gamma, a)$ is the winding number of $\gamma$ about the point $a$.
+
+
+<h2>Morera's Theorem [Ahlfors p122]</h2>
+Let $\Omega$ be a simply conneced region and $f$ a continuous function defined on $\Omega$.
+If $\int_{\gamma} f(z) dz = 0$ for all closed curves $\gamma$ in $\Omega$ 
+then $f(z)$ is analytic on $\Omega$
+
+<h2>Hurwitz Theorem [Ahlfors p]</h2>
+If $f_{n}$ are non-zero, analyitc functions on a region $\Omega$ and $f_{n} \rightarrow f$ 
+uniformly on every compact set of $\Omega$ then 
+$f(z)$ is either identically zero or non-zero on $\Omega$.
+
+<h2>Taylor Series [Ahlfors p]</h2>
+If $f$ is analytic on $\Omega \ni z_{0}$ then
+$$f(z) = f(z_{0})+  f'(z_{0})(z-z_{0}) + \dots + {f^{(n)}(z) \over n! }(z-z_{0}) + \dots$$
+is vaild in the largest open in $\Omega$ centered at $z_{0}$. 
+
+<h2>Rouche's Theorem [Ahlfors p 153]</h2>
+Let $\Omega$ be a simply conneced region, $\gamma$ a curve homologous to zero in $\Omega$ 
+such that $n(\gamma, a) = 0$ or 1 for all $z \notin \gamma$ and $f,g$ are analytic functions
+on $\Omega$ such that $|f(z) - g(z)| < |f(z)|$ on $\gamma$. Then $f,g$ have the same number of
+zeros enclosed by $\gamma$
+
+<h2>Maximum Modulus Principle[Ahlfors p134]</h2>
+If $f$ is analytic and non-constant in a region $\Omega$ then $|f(z)|$ has not maximum in $\Omega$. 
+
+<h2>Cauchy's Inegral Formula[Ahlfors p]</h2>
+Let $\Omega$ be a simply conneced region, $\gamma$ is a curve homologous to zero in $\Omega$
+and $f$ an anaytic functions on $\Omega$ then $$n(\gamma,a) f(a) = \frac{1}{2\pi i} \int_{\gamma} \frac{f(z) dz}{z-a}$$
+
+<h2>Cauchy Inequalities [Ahlfors p10]</h2>
+If $a_{k}$ and $b_{k}$, $k \in \{1, ... m\}$ are complex numbers then 
+$$\left| \sum_{k} a_{k} b_{k} \right|^{2} \leq \left( \sum_{k} |a_{k}|^{2} \right) \left( \sum_{k} |b_{k}|^{2}\right)$$
+
+<h2>Schwartz Lemma [Ahlfors p135]</h2>
+If $f$ is analytic for $|z| < 1$ and satisfies the conditions $|f(z)| \leq 1$, f(0)=0, then
+|f(z)| \leq |z|$ and $|f'(0)| \leq 1$. If $|f(z)| = |z|$ for any $z neq 0$ or if 
+$|f'(0)| = 1$ then $f(z) = cz$ for some $c \in mathbb{C}$.
+
+<h2>Liouville's Theorem [Ahlfors p122]</h2>
+A function which is analytic and bounded on $\mathbb{C}$ must be constant. 
+
+<h2>Cauchy Riemann Equations</h2>
+If $f(z) = u(z) + iv(z)$ is analytic then
+$$\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \hspace{1in} 
+\frac{\partial u}{\partial y} = \frac{- \partial v}{\partial x}$$
+
+<h2>Picard's Theorem [Ahlfors p307]</h2>
+An entire function with more than one ommitted value is constant.
+
+<p><i>A complex function is entire if it is analytic on the whole plane.</i></p>
+
+<p><i>An omitted value is a complex number $a$ such that $f(z) \neq a$ in the region
+where $f$ is defined.</i></p>
+
+
+<h2>Laurent Expansion [Ahlfors p184]</h2>
+If $f$ is analytic on $R_{1} < |z-a| < R_{2}$ then in this region $f$ can be expressed in the form 
+$$\sum_{-\infty}^{\infty} A_{n}(z-a)^{n}$$
+where the $A_{n}$ can be obtained through the formula
+$$A_{n} = \frac{1}{2\pi i} \int_{\gamma} \frac{f(\zeta) d\zeta}{(\zeta - a)^{n+1}}$$
+Where $\gamma$ is any circle of radius $r$ centered at $a$ such that $R_{1} < r < |z-a|$ if $n$ is
+positive and $|z-a| < r < |R_{2}|$ if $n$ is negative.
+
+
+
+<h2>Schwartz Reflection Principle [Ahlfors p172]</h2>
+Let $\Omega$ be a symmetric region, $\Omega^{+}$ be the part in the upper half plan and
+$\sigma$ the intersection of $\Omega$ and $\mathbb{R}$. If $v$ is continuous on 
+$\Omega^{+} cup \sigma$, harmonic on $\Omega^{+}$ and zero on $\sigma$.  Then $v$ has a 
+harmonic extension to $\Omega$ such that $v(\bar{z})= -v(z)$.  If $f = u + iv$ is analytic on
+$\Omega^{+}$ the $f$ has a analytic extension to $\Omega$ such that 
+$\displaystyle f(z) = \bar{f(\bar{z})}$. 
+
+
+
+<h2>Weierstrass M-test [Ahlfors p 37]</h2>
+Suppose that $f_{n}$ is a sequence of functions defined on a metric space $E$, the $\sum f_{n}$
+converges uniformly on $E$ if there exists $M_{n}$ such that $\sum M_{n}$ converges and 
+$\displaystyle |f_{n}(x)| \leq M_{n}$ for all $x \in E$ 
+
+<h2>Residue Theorem [Ahlfors p]</h2>
+Let $\Omega$ be a simply conneced region, $\gamma$ a curve homologous to zero in $\Omega$
+and $f$ an anaytic functions on $\Omega$ except for isolated singularities at $a_{j}$
+ then $$ \frac{1}{2\pi i} \int_{\gamma} f(z) dz = \sum_{j} n(\gamma,a_{j}) \mbox{Res}_{a_{j}} f(z)$$
+
+
+
+<h2>The argument Principle [Ahlfors p]</h2>
+If $f$ is meromorphic in $\Omega$ with zeros at $a_{j}$ and poles at $b_{k}$ then 
+$$\frac{1}{2\pi i } \int_{\gamma} \frac{f'(z)}{f(z)} dz = \sum_{j} n(\gamma, a_{j}) - \sum_{k} n(\gamma, b_{k})$$
+
+
+
+<h2>Triangle Inequality</h2>
+For any vomplex numbers $a$, $b$, $|a+b| \leq |a| + |b|$.
+
+
+
+<h2>Dirichlet problem</h2>
+Given a bounded region $\Omega$ and a real valued function defined on $\Gamma$, 
+the boundary of $\Omega$, find a harmonic function that satisfies the boundary conditions. 
+
+<p>Dirichlet problem can be solved on any region $\Omega$ such that each point on the boundary
+is the endpoint of a line whose other points lie outside $\Omega$. Solutions can be constructed
+with subharmoic functions.</p>
+
+<h2>Poisson's Formula</h2>
+If $u$ is continuous on a closed, bounded set $E$ and $u$ is harmonic in the interior of $E$, 
+then
+$$u(a) = \frac{1}{2\pi} \int_{|z| = R} \frac{R^2 - |a|^{2}}{|z-a|^{2}}u(z) d\theta = 
+\frac{1}{2\pi} \int_{|z| = R} \mbox{Re } \frac{z+a}{z-a}u(z) d\theta$$
+
+<h2>Dirichlet's Integral</h2>
+$$\int_{0}^{\infty} \sin x^{2} dx = \frac{\pi}{2}$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
